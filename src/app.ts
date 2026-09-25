@@ -6,7 +6,8 @@ export async function BootStrep(server: FastifyInstance) {
 
   routes(server)
 
-  server.listen({ port: Number(env.PORT) }, () => {
+  server.listen({ port: Number(env.PORT), host: "0.0.0.0", }, () => {
+
     console.log(`Servidor rodando na porta ${env.PORT}`)
   })
 
