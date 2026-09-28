@@ -1,20 +1,15 @@
 import { FastifyInstance } from "fastify";
-import { teamsSchema } from "./schemas";
+import { postTeamsController } from "../../controller/teamsController/post";
 
 export const teamRoutes = (server: FastifyInstance) => {
 
   server.post("/teams/messages",
-    // {
-    //   schema: teamsSchema.chat
-    // },
+
     async (request, reply) => {
-      console.log("Recebi algo do Teams!");
 
-      const data = teamsSchema.chat.body.parse(request.body)
+      const result = await postTeamsController.execute(request, reply)
 
-      console.log(data)
-
-      return reply.status(200).send();
+      return reply.status(200).send(result);
     });
 
 }
