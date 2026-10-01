@@ -10,7 +10,9 @@ export class PostTeamsController {
 
     const response = await this.postTeamsUseCase.execute({ question: data.text })
 
-    return reply.send(response)
-
+    return reply.send({
+      type: "message",
+      text: response,
+    });
   }
 }

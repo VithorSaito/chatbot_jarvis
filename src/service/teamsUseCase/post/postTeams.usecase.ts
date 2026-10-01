@@ -11,8 +11,6 @@ export class PostTeamsUseCase {
 
     const url = `${env.DIFY_API_URL}/workflows/run`;
 
-    console.log("URL:", url);
-
     const generateResponse = await fetch(url, {
       method: "POST",
       headers: {
@@ -28,9 +26,9 @@ export class PostTeamsUseCase {
       }),
     });
 
-    const body = await generateResponse.text();
+    const body = await generateResponse.json();
 
-    return body;
+    return body.data.outputs.resposta;
 
   }
 }
